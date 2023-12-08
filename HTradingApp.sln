@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1704.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1C928033-8070-478B-9D1D-16BDF40F1160}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{433B1E6B-5315-4C18-AA72-953FC6B5121F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTradingApp.Api", "src\HTradingApp.Api\HTradingApp.Api.csproj", "{FEE8E247-0B3E-47FB-B336-4A8CF3A40CBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTradingApp.Persistence", "src\HTradingApp.Persistence\HTradingApp.Persistence.csproj", "{A55FA19F-24AC-4B25-BEEB-1DFF1D7EF411}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTradingApp.Domain", "src\HTradingApp.Domain\HTradingApp.Domain.csproj", "{E1BC46D1-0510-4556-B3AA-36D71425D9D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTradingApp.UnitTests", "tests\HTradingApp.UnitTests\HTradingApp.UnitTests.csproj", "{5C36ABED-BCBE-4A8D-9E69-DD45F719EB98}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{761952A2-DABC-4499-B66D-705D31EBAB0F}"
+	ProjectSection(SolutionItems) = preProject
+		notes.md = notes.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTradingApp.Mock", "src\HTradingApp.Mock\HTradingApp.Mock.csproj", "{9C646C18-024B-4A37-8D6A-F0A5D74676F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEE8E247-0B3E-47FB-B336-4A8CF3A40CBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE8E247-0B3E-47FB-B336-4A8CF3A40CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE8E247-0B3E-47FB-B336-4A8CF3A40CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE8E247-0B3E-47FB-B336-4A8CF3A40CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A55FA19F-24AC-4B25-BEEB-1DFF1D7EF411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A55FA19F-24AC-4B25-BEEB-1DFF1D7EF411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A55FA19F-24AC-4B25-BEEB-1DFF1D7EF411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A55FA19F-24AC-4B25-BEEB-1DFF1D7EF411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1BC46D1-0510-4556-B3AA-36D71425D9D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1BC46D1-0510-4556-B3AA-36D71425D9D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1BC46D1-0510-4556-B3AA-36D71425D9D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1BC46D1-0510-4556-B3AA-36D71425D9D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C36ABED-BCBE-4A8D-9E69-DD45F719EB98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C36ABED-BCBE-4A8D-9E69-DD45F719EB98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C36ABED-BCBE-4A8D-9E69-DD45F719EB98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C36ABED-BCBE-4A8D-9E69-DD45F719EB98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C646C18-024B-4A37-8D6A-F0A5D74676F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C646C18-024B-4A37-8D6A-F0A5D74676F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C646C18-024B-4A37-8D6A-F0A5D74676F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C646C18-024B-4A37-8D6A-F0A5D74676F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {601ABBAC-EE59-4ED1-9824-EC4C664D5753}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FEE8E247-0B3E-47FB-B336-4A8CF3A40CBF} = {433B1E6B-5315-4C18-AA72-953FC6B5121F}
+		{A55FA19F-24AC-4B25-BEEB-1DFF1D7EF411} = {433B1E6B-5315-4C18-AA72-953FC6B5121F}
+		{E1BC46D1-0510-4556-B3AA-36D71425D9D8} = {433B1E6B-5315-4C18-AA72-953FC6B5121F}
+		{5C36ABED-BCBE-4A8D-9E69-DD45F719EB98} = {1C928033-8070-478B-9D1D-16BDF40F1160}
+		{9C646C18-024B-4A37-8D6A-F0A5D74676F0} = {433B1E6B-5315-4C18-AA72-953FC6B5121F}
+	EndGlobalSection
+EndGlobal
