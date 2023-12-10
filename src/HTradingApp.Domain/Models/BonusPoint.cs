@@ -7,5 +7,6 @@ namespace HTradingApp.Domain.Models
         public int AccountId { get; set; }
 		public int Amount { get; set; }
 		public DateTime? BonusAdded { get; set; }
+		public bool ConvertedToCredit { get; set; }
     }
 }

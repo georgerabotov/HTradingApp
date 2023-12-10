@@ -17,7 +17,7 @@ namespace HTradingApp.Api.Requests.Handlers
 
         public async Task<BonusPointsResponse> Handle(GetBonusPointRequest request, CancellationToken cancellationToken)
         {
-            int bonusPoints = await _bonusService.GetAccountBonusPoints(request.AccountId);
+            int bonusPoints = _bonusService.GetAccountBonusPoints(request.AccountId);
             return new BonusPointsResponse(request.AccountId, bonusPoints);
         }
     }

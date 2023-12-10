@@ -25,7 +25,6 @@ namespace HTradingApp.UnitTests
             var services = new ServiceCollection();
             services.AddMemoryCache();
             var serviceProvider = services.BuildServiceProvider();
-
             _cache = serviceProvider.GetService<IMemoryCache>();
 
             _dataInitializer = new DataInitiliazer(_cache);

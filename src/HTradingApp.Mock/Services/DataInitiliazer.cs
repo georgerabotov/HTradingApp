@@ -60,7 +60,8 @@ namespace HTradingApp.Mock.Services
                 .RuleFor(x => x.AccountId, accountId)
                 .RuleFor(x => x.Amount, 10)
                 .RuleFor(x => x.Id, Guid.NewGuid())
-                .RuleFor(x => x.BonusAdded, DateTime.Now);
+                .RuleFor(x => x.BonusAdded, DateTime.Now)
+                .RuleFor(x => x.ConvertedToCredit, false);
         }
 	}
 }

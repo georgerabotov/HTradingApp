@@ -22,8 +22,8 @@ namespace HTradingApp.Api.Requests.Handlers
             // If more time, I would move the deals at the endpoint level.
 
             List<Deal> deals = _deals.GetHistoricalDeals(request.AccountId, request.FromDateTime, request.ToDateTime);
-            int bonusPoints = await _bonusService.CalculateBonusPoints(request.AccountId, deals);
-            return await _bonusService.AddAccountBonusPoints(request.AccountId, bonusPoints);
+            int bonusPoints = _bonusService.CalculateBonusPoints(request.AccountId, deals);
+            return _bonusService.AddAccountBonusPoints(request.AccountId, bonusPoints);
         }
     }
 }

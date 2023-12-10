@@ -16,12 +16,12 @@ namespace HTradingApp.Api.Requests.Handlers
 
         public async Task<bool> Handle(AddCreditRequest request, CancellationToken cancellationToken)
         {
-            int bonusPoints = await _bonusService.GetAccountBonusPoints(request.AccountId);
-            decimal creditAmount = await _bonusService.CalculateAccountCredit(bonusPoints);
+            int bonusPoints =  _bonusService.GetAccountBonusPoints(request.AccountId);
+            decimal creditAmount = _bonusService.CalculateAccountCredit(bonusPoints);
             bool isCredited = _creditOperations.CreateCreditOperation(request.AccountId, creditAmount);
             if (isCredited)
             {
-                _ = await _bonusService.FlushBonusPoints(request.AccountId);
+                _ = _bonusService.FlushBonusPoints(request.AccountId);
                 return true;
             }
             return false;

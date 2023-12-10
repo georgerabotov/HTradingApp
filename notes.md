@@ -17,12 +17,16 @@ end of each month.
 # The notes
 - User focused. Give very clear explanation what is the problem if there is an error.
 
+# Storage
+- Since I am mocking / storing the data somewhere, I would use a database, but since I am currently on my mac, I would spend a lot of time
+having to start a docker container and so on. To save time, I have decided to use InMemoryCache and just update that.
 # My approach
 - Let's break down the problem into multiple smaller problems:
     1. "You'll be working on interfaces around trading platform" - That is self-explanatory, I think it also explains what the task is.
     2. Calculate bonus points based on Deals.
-    3. Be able to apply different Algorithms and add new ones (Here, we are talking about clean and code that is future-proof and scalable)
-    4. Be able to create thousands of credit records into the user's accounts at the end of each month.
+    3. Check eligibility? Write some sort of a check that verifies if the user if eligible for bonus points
+    4. Be able to apply different Algorithms and add new ones (Here, we are talking about clean and code that is future-proof and scalable)
+    5. Be able to create thousands of credit records into the user's accounts at the end of each month.
         - Here we have multiple approaches, since this is happening at the end of each month.
         i. We can create a hosted service, that is going to check for deals and calculate bonus points (also add a feature flag to enable it.)
         ii. Since we are building an API, we can have an endpoint that triggers a report, that does the calculation and adds the points to the database
