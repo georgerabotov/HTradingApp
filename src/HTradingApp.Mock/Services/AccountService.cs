@@ -1,12 +1,10 @@
-﻿using System;
-using Bogus;
-using HTradingApp.Domain;
+﻿using HTradingApp.Domain;
 using HTradingApp.Domain.Models;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace HTradingApp.Mock.Services
 {
-	public class AccountService : IAccounts
+    public class AccountService : IAccounts
 	{
         private readonly IMemoryCache _cache;
         public AccountService(IMemoryCache cache)
@@ -15,7 +13,7 @@ namespace HTradingApp.Mock.Services
         }
         public List<Account> GetAccountsList()
         {
-            return (List<Account>) _cache.Get("Accounts");
+            return _cache.Get("Accounts") as List<Account>;
         }
     }
 }

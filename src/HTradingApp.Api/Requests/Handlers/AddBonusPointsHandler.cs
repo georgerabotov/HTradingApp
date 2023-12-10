@@ -1,12 +1,11 @@
-﻿using System;
-using HTradingApp.Api.Requests.Responses;
-using HTradingApp.Domain;
+﻿using HTradingApp.Domain;
 using HTradingApp.Domain.Models;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HTradingApp.Api.Requests.Handlers
 {
-	public class AddBonusPointsHandler : IRequestHandler<AddBonusPointRequest, bool>
+    public class AddBonusPointsHandler : IRequestHandler<AddBonusPointRequest, IActionResult>
 	{
         private readonly IBonusService _bonusService;
         private readonly IDeals _deals;
@@ -17,13 +16,14 @@ namespace HTradingApp.Api.Requests.Handlers
             _deals = deals;
         }
 
-        public async Task<bool> Handle(AddBonusPointRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> Handle(AddBonusPointRequest request, CancellationToken cancellationToken)
         {
-            // If more time, I would move the deals at the endpoint level.
-
             List<Deal> deals = _deals.GetHistoricalDeals(request.AccountId, request.FromDateTime, request.ToDateTime);
             int bonusPoints = _bonusService.CalculateBonusPoints(request.AccountId, deals);
-            return _bonusService.AddAccountBonusPoints(request.AccountId, bonusPoints);
+            bool successful =  _bonusService.AddAccountBonusPoints(request.AccountId, bonusPoints);
+            return successful == true
+                ? new CreatedResult("The account had it's bonus points calculated and added", bonusPoints)
+                : new BadRequestObjectResult($"Failed to add bonus points: {bonusPoints}");
         }
     }
 }

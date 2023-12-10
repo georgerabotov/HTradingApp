@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using HTradingApp.Domain;
+﻿using HTradingApp.Domain;
 using HTradingApp.Domain.Models;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -24,7 +22,7 @@ namespace HTradingApp.Persistence.Services
                 return false;
             }
 
-            if (bonusPointList.Any(x => x.AccountId == accountId))
+            if (!bonusPointList.Any(x => x.AccountId == accountId))
             {
                 return false;
             }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Bogus;
-using HTradingApp.Domain;
+﻿using HTradingApp.Domain;
 using HTradingApp.Domain.Models;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -16,7 +13,7 @@ namespace HTradingApp.Mock.Services
         }
         public List<Deal> GetHistoricalDeals(int accountId, DateTime fromDateTime, DateTime toDateTime)
         {
-            var deals = (List<Deal>)_cache.Get("Deals");
+            var deals = _cache.Get("Deals") as List<Deal>;
             return deals;
         }
     }

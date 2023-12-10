@@ -1,11 +1,9 @@
-﻿using System;
-using FluentValidation;
-using HTradingApp.Domain.Models;
+﻿using FluentValidation;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace HTradingApp.Api.Requests.Validators
 {
-	public class AddBonusPointValidator : AbstractValidator<AddBonusPointRequest>
+    public class AddBonusPointValidator : AbstractValidator<AddBonusPointRequest>
 	{
         private readonly IMemoryCache _cache;
 
@@ -16,11 +14,8 @@ namespace HTradingApp.Api.Requests.Validators
             RuleFor(x => x.AccountId)
                 .NotNull()
                 .NotEmpty()
-                .Must(x =>
-                {
-                    var accounts = (List<Account>)_cache.Get("Accounts");
-                    return accounts.Any(y => y.Id == x);
-                }).WithMessage("Account does not exist");
+                .Must(x => AccountValidityHelper.BeValidAccount(x, _cache))
+                .WithMessage("Account does not exist");
 
             // Company opens in 1990
             RuleFor(x => x.FromDateTime)

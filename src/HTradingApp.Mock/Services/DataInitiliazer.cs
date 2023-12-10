@@ -1,11 +1,10 @@
-﻿using System;
-using Bogus;
+﻿using Bogus;
 using HTradingApp.Domain.Models;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace HTradingApp.Mock.Services
 {
-	public class DataInitiliazer
+    public class DataInitiliazer
 	{
 		private readonly IMemoryCache _cache;
 		public DataInitiliazer(IMemoryCache cache)

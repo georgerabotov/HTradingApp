@@ -1,10 +1,10 @@
-﻿using System;
-using HTradingApp.Domain;
+﻿using HTradingApp.Domain;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HTradingApp.Api.Requests.Handlers
 {
-	public class AddCreditHandler : IRequestHandler<AddCreditRequest, bool>
+    public class AddCreditHandler : IRequestHandler<AddCreditRequest, IActionResult>
 	{
         private readonly IBonusService _bonusService;
         private readonly ICreditOperations _creditOperations;
@@ -14,7 +14,7 @@ namespace HTradingApp.Api.Requests.Handlers
             _creditOperations = creditOperations;
         }
 
-        public async Task<bool> Handle(AddCreditRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> Handle(AddCreditRequest request, CancellationToken cancellationToken)
         {
             int bonusPoints =  _bonusService.GetAccountBonusPoints(request.AccountId);
             decimal creditAmount = _bonusService.CalculateAccountCredit(bonusPoints);
@@ -22,9 +22,9 @@ namespace HTradingApp.Api.Requests.Handlers
             if (isCredited)
             {
                 _ = _bonusService.FlushBonusPoints(request.AccountId);
-                return true;
+                return new CreatedResult("Bonus points were successfully credited", bonusPoints);
             }
-            return false;
+            return new BadRequestObjectResult($"Failed to add bonus points: {bonusPoints}");
         }
     }
 }

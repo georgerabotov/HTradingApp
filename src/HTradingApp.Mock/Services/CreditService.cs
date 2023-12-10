@@ -1,5 +1,4 @@
-﻿using System;
-using HTradingApp.Domain;
+﻿using HTradingApp.Domain;
 using HTradingApp.Domain.Models;
 
 namespace HTradingApp.Mock.Services
@@ -19,6 +18,7 @@ namespace HTradingApp.Mock.Services
             {
                 return false;
             }
+            // Here it would probably call the API to confirm the successful addition of a credit.
             Console.WriteLine($"Created Credit operation of {amount} for accountId {accountId}");
             return true;
         }

@@ -1,12 +1,10 @@
-﻿using System;
-using HTradingApp.Api.ControllerModels;
+﻿using HTradingApp.Api.ControllerModels;
 using HTradingApp.Api.Core;
 using HTradingApp.Api.Requests;
 using HTradingApp.Domain;
 using HTradingApp.Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace HTradingApp.Api.Controllers
 {
@@ -46,7 +44,7 @@ namespace HTradingApp.Api.Controllers
 		{
 			List<Account> accounts = _accountService.GetAccountsList();
 			accounts.ForEach(async x => await Ok(new AddCreditRequest(x.Id)));
-			return Created("", "");
+			return Created("Successfull credited the following accounts", accounts.Select(x => x.Name));
         }
 	}
 }

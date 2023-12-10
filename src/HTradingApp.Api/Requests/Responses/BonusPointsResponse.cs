@@ -1,5 +1,4 @@
-﻿using System;
-namespace HTradingApp.Api.Requests.Responses
+﻿namespace HTradingApp.Api.Requests.Responses
 {
 	public class BonusPointsResponse
 	{

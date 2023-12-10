@@ -1,5 +1,4 @@
-﻿using System;
-using HTradingApp.Api.Requests.Responses;
+﻿using HTradingApp.Api.Requests.Responses;
 using MediatR;
 
 namespace HTradingApp.Api.ControllerModels
@@ -10,6 +9,7 @@ namespace HTradingApp.Api.ControllerModels
 		{
 			AccountId = accountId;
 		}
+
 		public int AccountId { get; }
 	}
 }

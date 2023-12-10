@@ -1,12 +1,11 @@
-﻿using System;
-using HTradingApp.Api.ControllerModels;
+﻿using HTradingApp.Api.ControllerModels;
 using HTradingApp.Api.Requests.Responses;
 using HTradingApp.Domain;
 using MediatR;
 
 namespace HTradingApp.Api.Requests.Handlers
 {
-	public class GetBonusPointsHandler : IRequestHandler<GetBonusPointRequest, BonusPointsResponse>
+    public class GetBonusPointsHandler : IRequestHandler<GetBonusPointRequest, BonusPointsResponse>
 	{
         private readonly IBonusService _bonusService;
 
