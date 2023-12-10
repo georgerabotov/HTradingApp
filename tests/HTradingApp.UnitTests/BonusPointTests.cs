@@ -49,10 +49,11 @@ public class BonusPointTests
     }
 
     [Theory]
-    [InlineData(15, 10, true)]
-    [InlineData(1, 1000, false)]
+    [InlineData(15, 10, false)]
+    [InlineData(1, 1000, true)]
     public void AddAccountBonusPoints_Should_Return_Correct_On_Input(int accountId, int bonusPoints, bool expectedResult)
     {
+        // We have no Id of 15 , it should fail.
         DataInitiliazer dataInitializer = new(_cache);
         dataInitializer.GenerateFakeData();
 
