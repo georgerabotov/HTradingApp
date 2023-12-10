@@ -8,6 +8,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Moq;
 using HTradingApp.Domain.Models;
 using Microsoft.Extensions.DependencyInjection;
+using HTradingApp.Api.ControllerModels;
 
 namespace HTradingApp.UnitTests
 {
@@ -90,6 +91,36 @@ namespace HTradingApp.UnitTests
             // Assert
             result.IsValid.Should().BeFalse();
             result.ShouldHaveValidationErrorFor(x => x.ToDateTime).WithErrorMessage("'To Date Time' must not be empty.");
+        }
+
+        [Fact]
+        public void AddCreditValidator_Not_Found_AccountId()
+        {
+            // Arrange
+            _dataInitializer.GenerateFakeData();
+            var model = new AddCreditRequest(6);
+
+            // Act
+            var result = _addCreditValidator.TestValidate(model);
+
+            // Assert
+            result.IsValid.Should().BeFalse();
+            result.ShouldHaveValidationErrorFor(x => x.AccountId).WithErrorMessage("Account does not exist");
+        }
+
+        [Fact]
+        public void GetBonusPointsValidator_Not_Found_AccountId()
+        {
+            // Arrange
+            _dataInitializer.GenerateFakeData();
+            var model = new GetBonusPointRequest(6);
+
+            // Act
+            var result = _getBonusValidator.TestValidate(model);
+
+            // Assert
+            result.IsValid.Should().BeFalse();
+            result.ShouldHaveValidationErrorFor(x => x.AccountId).WithErrorMessage("Account does not exist");
         }
     }
 }
