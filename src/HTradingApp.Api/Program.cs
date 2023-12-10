@@ -1,5 +1,9 @@
 ﻿using System.Reflection;
+using FluentValidation;
+using HTradingApp.Api.ControllerModels;
 using HTradingApp.Api.Core;
+using HTradingApp.Api.Requests;
+using HTradingApp.Api.Requests.Validators;
 using HTradingApp.Domain;
 using HTradingApp.Mock.Services;
 using HTradingApp.Persistence.Services;
@@ -26,6 +30,9 @@ builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavi
 builder.Services.AddTransient<ErrorHandlingMiddleWare>();
 builder.Services.AddMemoryCache();
 
+builder.Services.AddScoped<IValidator<AddBonusPointRequest>, AddBonusPointValidator>();
+builder.Services.AddScoped<IValidator<AddCreditRequest>, AddCreditValidator>();
+builder.Services.AddScoped<IValidator<GetBonusPointRequest>, GetBonusPointValidator>();
 
 var app = builder.Build();
 
@@ -48,4 +55,3 @@ initializationService.GenerateFakeData();
 app.MapControllers();
 
 app.Run();
-

@@ -31,7 +31,10 @@ namespace HTradingApp.Mock.Services
                 .SelectMany(account => GenerateDeals(account.Id))
                 .ToList();
 
-            List<BonusPoint> bonusPoints = accounts.Select(account => GenerateBonusPoints(account.Id)).ToList();
+            List<BonusPoint> bonusPoints = accounts
+                .Where(x => x.Id != 5)
+                .Select(account => GenerateBonusPoints(account.Id))
+                .ToList();
 
             _cache.Set("Accounts", accounts);
             _cache.Set("Deals", deals);
@@ -43,6 +46,7 @@ namespace HTradingApp.Mock.Services
         private List<Deal> GenerateDeals(int accountId)
         {
             return new Faker<Deal>()
+                .RuleFor(x => x.Id, Guid.NewGuid())
                 .RuleFor(x => x.AccountId, accountId)
                 .RuleFor(x => x.Amount, f => f.Random.Int(0, 1000000))
                 .RuleFor(x => x.DealDateTime, f => f.Date.Between(DateTime.Now.AddMonths(-1), DateTime.Now.AddMonths(-1)))

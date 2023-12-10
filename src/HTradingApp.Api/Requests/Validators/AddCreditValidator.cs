@@ -20,7 +20,7 @@ namespace HTradingApp.Api.Requests.Validators
                 .Must(x =>
                 {
                     var accounts = (List<Account>)_cache.Get("Accounts");
-                    return !accounts.Any(y => y.Id == x);
+                    return accounts.Any(y => y.Id == x);
                 }).WithErrorCode("Account does not exist");
         }
 	}
