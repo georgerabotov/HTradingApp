@@ -9,6 +9,6 @@ namespace HTradingApp.Domain
 		public Task<bool> AddAccountBonusPoints(int accountId, int bonusPoints);
 		public Task<int> CalculateBonusPoints(int accountId, List<Deal> deals);
 		public Task<bool> FlushBonusPoints(int accountId);
-		public Task<int> CalculateBonusPointsCredit(int accountId, int bonusPoints);
+		public Task<decimal> CalculateAccountCredit(int bonusPoints);
 	}
 }

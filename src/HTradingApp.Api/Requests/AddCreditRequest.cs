@@ -4,8 +4,12 @@ using MediatR;
 
 namespace HTradingApp.Api.Requests
 {
-	public class AddCreditRequest : IRequest<BonusPointsResponse>
+	public class AddCreditRequest : IRequest<bool>
     {
-        public int AccountId { get; set; }
+        public AddCreditRequest(int accountId)
+        {
+            AccountId = accountId;
+        }
+        public int AccountId { get; }
     }
 }

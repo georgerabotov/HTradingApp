@@ -1,68 +1,52 @@
 ﻿using System;
+using HTradingApp.Api.ControllerModels;
+using HTradingApp.Api.Core;
+using HTradingApp.Api.Requests;
 using HTradingApp.Domain;
+using HTradingApp.Domain.Models;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.Extensions.Caching.Memory;
 
 namespace HTradingApp.Api.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class BonusPointsEndpoints : ControllerBase
+	public class BonusPointsEndpoints : ApiControllerBase
 	{
-		private readonly IBonusService _bonusService;
-		private readonly IDeals _dealService;
-		private readonly ICreditOperations _creditService;
 		private readonly IAccounts _accountService;
+		
 
-        public BonusPointsEndpoints(IBonusService bonusService, IDeals dealService, ICreditOperations creditService, IAccounts accountService)
-		{
-            _bonusService = bonusService;
-            _dealService = dealService;
-            _creditService = creditService;
+        public BonusPointsEndpoints(IMediator mediator, IAccounts accountService)
+            : base(mediator)
+        {
             _accountService = accountService;
         }
 
-		[HttpGet("{accointId}")]
+		[HttpGet("{accountId}")]
 		public async Task<IActionResult> GetAccountBonusPoints(int accountId)
 		{
-			return Ok(await _bonusService.GetAccountBonusPoints(accountId));
+			return await Ok(new GetBonusPointRequest(accountId));
 		}
 
 		[HttpPost("{accountId}")]
 		public async Task<IActionResult> AddAccountBonusPoints(int accountId, DateTime fromDateTime, DateTime toDateTime)
 		{
-			var account = _accountService.GetAccountsList();
-			var deals = _dealService.GetHistoricalDeals(accountId, fromDateTime, toDateTime);
-
-            int bonusPoints = await _bonusService.CalculateBonusPoints(accountId, deals);
-
-			return Ok(await _bonusService.AddAccountBonusPoints(accountId, bonusPoints));
+            return await Ok(new AddBonusPointRequest(accountId, fromDateTime, toDateTime));
 		}
 
 		[HttpPost("{accountId}/credit")]
 		public async Task<IActionResult> AddAccountCredit(int accountId)
 		{
-			int bonusPoints = await _bonusService.GetAccountBonusPoints(accountId);
-			if (bonusPoints == 0)
-			{
-				return NoContent();
-			}
-			int credit = await _bonusService.CalculateBonusPointsCredit(accountId, bonusPoints);
-
-			bool isSuccessful = _creditService.CreateCreditOperation(accountId, credit);
-			if (!isSuccessful)
-			{
-				return BadRequest("Failed to add credit to account");
-			}
-
-            await _bonusService.FlushBonusPoints(accountId);
-            return Ok($"Successfully Credited {accountId} with £{credit}");
+			return await Ok(new AddCreditRequest(accountId));
         }
 
 		[HttpPost("accounts/credit")]
 		public async Task<IActionResult> AddAccountsCredit()
 		{
-			return Ok();
-		}
+			List<Account> accounts = _accountService.GetAccountsList();
+			accounts.ForEach(async x => await Ok(new AddCreditRequest(x.Id)));
+			return Created("", "");
+        }
 	}
 }

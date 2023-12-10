@@ -6,17 +6,17 @@ namespace HTradingApp.Persistence.Services
 {
     public class BonusService : IBonusService
     {
-        public Task<int> AddAccountBonusPoints(int accountId, int bonusPoints)
+        public Task<bool> AddAccountBonusPoints(int accountId, int bonusPoints)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<decimal> CalculateAccountCredit(int bonusPoints)
         {
             throw new NotImplementedException();
         }
 
         public Task<int> CalculateBonusPoints(int accountId, List<Deal> deals)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> CalculateBonusPointsCredit(int accountId, int bonusPoints)
         {
             throw new NotImplementedException();
         }

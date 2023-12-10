@@ -6,9 +6,14 @@ namespace HTradingApp.Api.Requests
 {
 	public class AddBonusPointRequest : IRequest<bool>
     {
-        public int AccountId { get; set; }
-        public int Amount { get; set; }
-        public DateTime FromDateTime { get; set; }
-        public DateTime ToDateTime { get; set; }
+        public AddBonusPointRequest(int accountId, DateTime fromDate, DateTime toDate)
+        {
+            AccountId = accountId;
+            FromDateTime = fromDate;
+            ToDateTime = toDate;
+        }
+        public int AccountId { get; }
+        public DateTime FromDateTime { get; }
+        public DateTime ToDateTime { get; }
     }
 }

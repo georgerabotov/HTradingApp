@@ -6,7 +6,10 @@ namespace HTradingApp.Api.ControllerModels
 {
 	public class GetBonusPointRequest : IRequest<BonusPointsResponse>
 	{
-		public int AccountId { get; set; }
+		public GetBonusPointRequest(int accountId)
+		{
+			AccountId = accountId;
+		}
+		public int AccountId { get; }
 	}
 }
-

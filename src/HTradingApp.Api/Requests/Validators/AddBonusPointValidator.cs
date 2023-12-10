@@ -12,7 +12,7 @@ namespace HTradingApp.Api.Requests.Validators
 		public AddBonusPointValidator(IMemoryCache cache)
 		{
             _cache = cache;
-
+            
             RuleFor(x => x.AccountId)
                 .NotNull()
                 .NotEmpty()
@@ -29,11 +29,6 @@ namespace HTradingApp.Api.Requests.Validators
             RuleFor(x => x.ToDateTime)
                 .NotNull()
                 .NotEmpty();
-
-            RuleFor(x => x.Amount)
-                .NotEmpty()
-                .NotNull()
-                .GreaterThanOrEqualTo(1);
         }
 	}
 }

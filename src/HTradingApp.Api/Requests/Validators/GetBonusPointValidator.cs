@@ -22,8 +22,6 @@ namespace HTradingApp.Api.Requests.Validators
 					var accounts = (List<Account>)_cache.Get("Accounts");
 					return !accounts.Any(y => y.Id == x);
 				}).WithErrorCode("Account does not exist");
-				
-			
         }
 	}
 }
